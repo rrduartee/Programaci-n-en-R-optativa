@@ -17,10 +17,13 @@ str(movies)
 #a) Para las peliculas de acción que tengan un presupuesto disponible,
 #calcula la media de su duración y la media de su presupuesto utilizando
 #la funcion pipe 0.5 pts
-
+Peliculasdeaccion<-movies %>% 
+          select(budget, Action, length) %>% 
+          filter(!is.na(budget) & Action != 0) %>% 
+          summarise(mean(budget), mean(length))
 #b) Calcula el presupuesto promedio por cada año para todas las 
 #peliculas que tengan un presupuesto, utiliza la funcion pipe 0.5 pts
-
+meanbudget<-movies %>% select(year, budget) %>% filter(!is.na(budget)) %>% group_by(year) %>% summarise(mean(budget))
 
 #c) Crea una nueva columna que calcule el presupuesto por minuto 
 #de cada pelicula, luego calcula el precio promedio y la desviacion
